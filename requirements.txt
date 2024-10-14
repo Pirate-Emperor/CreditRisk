@@ -1,0 +1,20 @@
+numpy 
+pandas 
+python-dotenv
+scikit-learn
+seaborn
+Flask
+dill
+astropy
+statsmodels
+scipy
+xgboost
+catboost
+dagshub
+mlflow
+cassandra-driver
+prometheus_client
+dvc
+ipykernel
+
+-e .
