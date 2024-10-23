@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Credit Risk Project</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #343a40;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            color: #6c757d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #495057;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 40px;
+            margin: 10px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .button:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .button-blue {
+            background-color: #007bff;
+        }
+        .button-blue:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to CreditRisk</h1>
+    <p>This application predicts credit risk based on the parameters of dataset</p>
+    <p>Use the buttons below to access the training and testing pages.</p>
+    
+    <div class="button-container">
+        <a href="/train" class="button">Train Model</a>
+        <a href="/predictdata" class="button button-blue">Test Model</a>
+    </div>
+</body>
+</html>
+
+
+
