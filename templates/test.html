@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            color: #333;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ffffff;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: rgba(0, 114, 255, 0.2);
+            color: #ffffff;
+        }
+
+        select option {
+            background-color: #0072ff;
+            color: #ffffff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .form-group select:focus,
+        .form-group input[type="number"]:focus {
+            border-color: #00b4d8;
+            outline: none;
+        }
+
+        .prediction-container {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide by default */
+        }
+
+        .prediction-container h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fill Details</h1>
+        <form action="/predictdata" method="post" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="status">Status(Deutsche Marks):</label>
+                <select name="status" id="status">
+                    <option value="1">no checking account</option>
+                    <option value="2">... < 0 DM</option>
+                    <option value="3">0 <= ... < 200 DM</option>
+                    <option value="4">... >= 200 DM / salary for at least 1 year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration (months):</label>
+                <input type="number" id="duration" name="duration" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="credit_history">Credit History:</label>
+                <select name="credit_history" id="credit_history">
+                    <option value="0">delay in paying off in the past</option>
+                    <option value="1">critical account/other credits elsewhere</option>
+                    <option value="2">no credits taken/all credits paid back duly</option>
+                    <option value="3">existing credits paid back duly till now</option>
+                    <option value="4">all credits at this bank paid back duly</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="purpose">Purpose:</label>
+                <select name="purpose" id="purpose">
+                    <option value="0">others</option>
+                    <option value="1">car (new)</option>
+                    <option value="2">car (used)</option>
+                    <option value="3">furniture/equipment</option>
+                    <option value="4">radio/television</option>
+                    <option value="5">domestic appliances</option>
+                    <option value="6">repairs</option>
+                    <option value="7">education</option>
+                    <option value="8">vacation</option>
+                    <option value="9">retraining</option>
+                    <option value="10">business</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount(MD:Deutsche Marks):</label>
+                <input type="number" id="amount" name="amount" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="savings">Savings:</label>
+                <select name="savings" id="savings">
+                    <option value="1">unknown/no savings account</option>
+                    <option value="2">... < 100 DM</option>
+                    <option value="3">100 <= ... < 500 DM</option>
+                    <option value="4">500 <= ... < 1000 DM</option>
+                    <option value="5">... >= 1000 DM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="employment_duration">Employment Duration:</label>
+                <select name="employment_duration" id="employment_duration">
+                    <option value="1">unemployed</option>
+                    <option value="2">&lt; 1 yr</option>
+                    <option value="3">1 <= ... < 4 yrs</option>
+                    <option value="4">4 <= ... < 7 yrs</option>
+                    <option value="5">&gt;= 7 yrs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="installment_rate">Installment Rate (%):</label>
+                <select name="installment_rate" id="installment_rate">
+                    <option value="1">&gt;= 35</option>
+                    <option value="2">25 <= ... < 35</option>
+                    <option value="3">20 <= ... < 25</option>
+                    <option value="4">&lt; 20</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="personal_status_sex">Personal Status/Sex:</label>
+                <select name="personal_status_sex" id="personal_status_sex">
+                    <option value="1">male: divorced/separated</option>
+                    <option value="2">female: non-single or male: single</option>
+                    <option value="3">male: married/widowed</option>
+                    <option value="4">female: single</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="other_debtors">Other Debtors/Guarantors:</label>
+                <select name="other_debtors" id="other_debtors">
+                    <option value="1">none</option>
+                    <option value="2">co-applicant</option>
+                    <option value="3">guarantor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="present_residence">Present Residence (years):</label>
+                <select name="present_residence" id="present_residence">
+                    <option value="1">&lt; 1 yr</option>
+                    <option value="2">1 <= ... < 4 yrs</option>
+                    <option value="3">4 <= ... < 7 yrs</option>
+                    <option value="4">&gt;= 7 yrs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="property">Property:</label>
+                <select name="property" id="property">
+                    <option value="1">unknown / no property</option>
+                    <option value="2">car or other</option>
+                    <option value="3">building soc. savings agr./life insurance</option>
+                    <option value="4">real estate</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="other_installment_plans">Other Installment Plans:</label>
+                <select name="other_installment_plans" id="other_installment_plans">
+                    <option value="1">bank</option>
+                    <option value="2">stores</option>
+                    <option value="3">none</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="housing">Housing:</label>
+                <select name="housing" id="housing">
+                    <option value="1">for free</option>
+                    <option value="2">rent</option>
+                    <option value="3">own</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="number_credits">Number of Credits:</label>
+                <select name="number_credits" id="number_credits">
+                    <option value="1">1</option>
+                    <option value="2">2-3</option>
+                    <option value="3">4-5</option>
+                    <option value="4">&gt;= 6</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="job">Job:</label>
+                <select name="job" id="job">
+                    <option value="1">unemployed/unskilled - non-resident</option>
+                    <option value="2">unskilled - resident</option>
+                    <option value="3">skilled employee/official</option>
+                    <option value="4">manager/self-employee/highly qualify employee</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="people_liable">People Liable:</label>
+                <select name="people_liable" id="people_liable">
+                    <option value="1">3 or more</option>
+                    <option value="2">0 to 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Telephone:</label>
+                <select name="telephone" id="telephone">
+                    <option value="1">none</option>
+                    <option value="2">yes, registered under the customer name</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="foreign_worker">Foreign Worker:</label>
+                <select name="foreign_worker" id="foreign_worker">
+                    <option value="1">yes</option>
+                    <option value="2">no</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>            
+        </form>
+        
+        <div>
+            <h2 id="predictionText">Prediction: {{ prediction }}</h2>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="/history">
+                <button type="button">View History</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
